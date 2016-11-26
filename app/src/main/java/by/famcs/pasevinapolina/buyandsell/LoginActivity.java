@@ -39,6 +39,14 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mLoginButton.setOnClickListener((v)-> {login();});
+
+        mSignupLink.setOnClickListener(v -> {
+            // Start the Signup activity
+            Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+            startActivityForResult(intent, REQUEST_SIGNUP);
+            finish();
+            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+        });
     }
 
     public void login() {

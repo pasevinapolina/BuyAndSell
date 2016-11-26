@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_address"
+            <EditText android:id="@+id/input_last_name"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:inputType="textPersonName"
@@ -86,10 +86,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_mobile"
+            <EditText android:id="@+id/input_phone"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:inputType="number"
+                      android:inputType="phone"
                       android:hint="@string/phone_number" />
         </android.support.design.widget.TextInputLayout>
 
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_reEnterPassword"
+            <EditText android:id="@+id/input_confirm"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:inputType="textPassword"

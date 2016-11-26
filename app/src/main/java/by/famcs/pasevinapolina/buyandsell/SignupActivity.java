@@ -2,6 +2,7 @@ package by.famcs.pasevinapolina.buyandsell;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,19 +20,15 @@ public class SignupActivity extends AppCompatActivity {
 
     private static final String TAG = "SignupActivity";
 
-    @BindView(R.id.input_name) EditText _nameText;
-    @BindView(R.id.input_address) EditText _addressText;
-    @BindView(R.id.input_email) EditText _emailText;
-    @BindView(R.id.input_mobile) EditText _mobileText;
-    @BindView(R.id.input_password) EditText _passwordText;
-    @BindView(R.id.input_reEnterPassword) EditText _reEnterPasswordText;
-    @BindView(R.id.btn_signup)
-    Button _signupButton;
-    @BindView(R.id.link_login)
-    TextView _loginLink;
-    @BindView(R.id.input_login)
-    EditText mLogin;
-
+    @BindView(R.id.input_name) EditText mName;
+    @BindView(R.id.input_email) EditText mEmail;
+    @BindView(R.id.input_phone) EditText mPhone;
+    @BindView(R.id.input_password) EditText mPassword;
+    @BindView(R.id.input_confirm) EditText mConfirm;
+    @BindView(R.id.btn_signup) Button mSignupButton;
+    @BindView(R.id.link_login) TextView mLoginLink;
+    @BindView(R.id.input_login) EditText mLogin;
+    @BindView(R.id.input_last_name) EditText mLastName;
 
 
     @Override
@@ -40,17 +37,17 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
 
-        _signupButton.setOnClickListener(new View.OnClickListener() {
+        mSignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signup();
             }
         });
 
-        _loginLink.setOnClickListener(new View.OnClickListener() {
+        mLoginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Finish the registration screen and return to the Login activity
+                // return to the Login activity
                 Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -67,24 +64,25 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        _signupButton.setEnabled(false);
+        mSignupButton.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
                 R.style.AppTheme_Dark_Dialog);
+        String dialogMsg = getResources().getString(R.string.creating_account);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
+        progressDialog.setMessage(dialogMsg);
         progressDialog.show();
 
-        String name = _nameText.getText().toString();
-        String address = _addressText.getText().toString();
-        String email = _emailText.getText().toString();
-        String mobile = _mobileText.getText().toString();
-        String password = _passwordText.getText().toString();
-        String reEnterPassword = _reEnterPasswordText.getText().toString();
+        String name = mName.getText().toString();
+        String lastName = mLastName.getText().toString();
+        String email = mEmail.getText().toString();
+        String mobile = mPhone.getText().toString();
+        String password = mPassword.getText().toString();
+        String reEnterPassword = mConfirm.getText().toString();
 
-        // TODO: Implement your own signup logic here.
+        // TODO:signup logic.
 
-        new android.os.Handler().postDelayed(
+        new Handler().postDelayed(
                 new Runnable() {
                     public void run() {
 
@@ -97,78 +95,92 @@ public class SignupActivity extends AppCompatActivity {
 
 
     public void onSignupSuccess() {
-        _signupButton.setEnabled(true);
+        mSignupButton.setEnabled(true);
         setResult(RESULT_OK, null);
         finish();
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        String failedMsg = getResources().getString(R.string.signup_error);
+        Toast.makeText(getBaseContext(), failedMsg, Toast.LENGTH_LONG).show();
 
-        _signupButton.setEnabled(true);
+        mSignupButton.setEnabled(true);
     }
 
     public boolean validate() {
         boolean valid = true;
 
-        String name = _nameText.getText().toString();
-        String address = _addressText.getText().toString();
-        String email = _emailText.getText().toString();
-        String mobile = _mobileText.getText().toString();
-        String password = _passwordText.getText().toString();
-        String reEnterPassword = _reEnterPasswordText.getText().toString();
+        String name = mName.getText().toString();
+        String lastName = mLastName.getText().toString();
+        String login = mLogin.getText().toString();
+
+        String email = mEmail.getText().toString();
+        String phone = mPhone.getText().toString();
+        String password = mPassword.getText().toString();
+        String confirmPassword = mConfirm.getText().toString();
 
         String errorMsg = "";
 
-        if (name.isEmpty() || name.length() < 3) {
-
-            _nameText.setError("at least 3 characters");
+        if (name.isEmpty()) {
+            setError(mName, R.string.not_empty_error);
             valid = false;
         } else {
-            _nameText.setError(null);
+            mName.setError(null);
         }
 
-        if (address.isEmpty()) {
-            errorMsg = getResources().getString(R.string.email_error);
-            _addressText.setError(errorMsg);
+        if (lastName.isEmpty()) {
+            setError(mLastName, R.string.not_empty_error);
             valid = false;
         } else {
-            _addressText.setError(null);
+            mLastName.setError(null);
+        }
+
+        if (login.isEmpty()) {
+            setError(mLogin, R.string.not_empty_error);
+            valid = false;
+        } else {
+            mLogin.setError(null);
         }
 
 
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             errorMsg = getResources().getString(R.string.email_error);
-            _emailText.setError(errorMsg);
+            mEmail.setError(errorMsg);
             valid = false;
         } else {
-            _emailText.setError(null);
+            mEmail.setError(null);
         }
 
-        if (mobile.isEmpty()) {
+        if (phone.isEmpty()) {
             errorMsg = getResources().getString(R.string.phone_error);
-            _mobileText.setError(errorMsg);
+            mPhone.setError(errorMsg);
             valid = false;
         } else {
-            _mobileText.setError(null);
+            mPhone.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4) {
             errorMsg = getResources().getString(R.string.password_error);
-            _passwordText.setError(errorMsg);
+            mPassword.setError(errorMsg);
             valid = false;
         } else {
-            _passwordText.setError(null);
+            mPassword.setError(null);
         }
 
-        if (reEnterPassword.isEmpty() || reEnterPassword.length() < 4 || !(reEnterPassword.equals(password))) {
+        if (confirmPassword.isEmpty() || confirmPassword.length() < 4
+                || !(confirmPassword.equals(password))) {
             errorMsg = getResources().getString(R.string.password_not_match);
-            _reEnterPasswordText.setError(errorMsg);
+            mConfirm.setError(errorMsg);
             valid = false;
         } else {
-            _reEnterPasswordText.setError(null);
+            mConfirm.setError(null);
         }
 
         return valid;
+    }
+
+    private void setError(EditText field, int errorMsgKey) {
+        String errorMsg = getResources().getString(errorMsgKey);
+        field.setError(errorMsg);
     }
 }

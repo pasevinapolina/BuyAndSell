@@ -1,12 +1,30 @@
 package by.famcs.pasevinapolina.buyandsell;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
+import by.famcs.pasevinapolina.buyandsell.fragments.CatalogFragment;
+import by.famcs.pasevinapolina.buyandsell.fragments.HomeFragment;
+import by.famcs.pasevinapolina.buyandsell.fragments.ProfileFragment;
+import by.famcs.pasevinapolina.buyandsell.fragments.ViewPagerAdapter;
+
 public class MainActivity extends AppCompatActivity {
+
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private int[] tabIcons = {
+            R.drawable.ic_home,
+            R.drawable.ic_catalog,
+            R.drawable.ic_profile
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +33,32 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//        viewPager = (ViewPager) findViewById(R.id.viewpager);
+//        setupViewPager(viewPager);
+//
+//        tabLayout = (TabLayout) findViewById(R.id.tabs);
+//        tabLayout.setupWithViewPager(viewPager);
+
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new HomeFragment(), "HOME");
+        adapter.addFragment(new CatalogFragment(), "CATALOG");
+        adapter.addFragment(new ProfileFragment(), "PROFILE");
+        viewPager.setAdapter(adapter);
     }
 
     @Override
