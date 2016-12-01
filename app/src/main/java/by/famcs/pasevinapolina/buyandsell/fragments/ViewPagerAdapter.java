@@ -3,8 +3,6 @@ package by.famcs.pasevinapolina.buyandsell.fragments;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.List;
 import by.famcs.pasevinapolina.buyandsell.R;
 
 /**
- * Created by user on 26.11.2016.
+ * Created by user
  */
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {

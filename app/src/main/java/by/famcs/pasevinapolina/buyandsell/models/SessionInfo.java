@@ -3,7 +3,7 @@ package by.famcs.pasevinapolina.buyandsell.models;
 import java.util.Date;
 
 /**
- * Created by user on 27.11.2016.
+ * Created by user
  */
 
 public class SessionInfo {
