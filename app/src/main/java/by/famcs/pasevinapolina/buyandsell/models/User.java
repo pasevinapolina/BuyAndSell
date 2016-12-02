@@ -1,10 +1,12 @@
 package by.famcs.pasevinapolina.buyandsell.models;
 
+import java.io.Serializable;
+
 /**
- * Created by user on 27.11.2016.
+ * Created by user
  */
 
-public class User {
+public class User implements Serializable {
 
     private long id;
     private String login;

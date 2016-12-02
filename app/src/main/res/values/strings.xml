@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">BuyAndSell</string>
+    <string name="app_name"><b><![CDATA[Buy&Sell]]></b></string>
     <string name="header"><![CDATA[Buy&Sell]]></string>
     <string name="welcome">Welcome!</string>
-    <string name="logo">BuyAndSell logo</string>
+    <string name="logo"><![CDATA[Buy&Sell]]> logo</string>
+    <string name="subheader">We are glad to see you! Here you can find something new or sell things</string>
 
     <string name="no_account"><u>No account yet? Create new one</u></string>
     <string name="already_member"><u>Already member? Login</u></string>
@@ -31,4 +32,9 @@
     <string name="home_fragment">Home</string>
     <string name="catalog">Catalog</string>
     <string name="profile">Profile</string>
+    <string name="details">Details</string>
+    <string name="my_products">My products</string>
+    <string name="cart">Cart</string>
+    <string name="search">Search</string>
+    <string name="hint_search">Product name or category</string>
 </resources>

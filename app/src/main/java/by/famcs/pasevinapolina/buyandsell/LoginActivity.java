@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import by.famcs.pasevinapolina.buyandsell.models.User;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.link_signup)
     TextView mSignupLink;
+
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        //disable going back to MainActivity
         moveTaskToBack(true);
     }
 
@@ -89,7 +93,6 @@ public class LoginActivity extends AppCompatActivity {
         if(requestCode == REQUEST_SIGNUP) {
             if(resultCode == RESULT_OK) {
 
-                //TODO: successful signup
                 this.finish();
             }
         }
@@ -98,6 +101,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onLoginSuccess() {
         mLoginButton.setEnabled(true);
+        user = new User();
+        user.setLogin(mEmail.getText().toString());
+        user.setPassword(mPassword.getText().toString());
+        getIntent().putExtra(MainActivity.USER, user);
         finish();
     }
 
