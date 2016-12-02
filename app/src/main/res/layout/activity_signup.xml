@@ -54,45 +54,6 @@
                       android:hint="@string/email" />
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Name -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_name"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:inputType="textPersonName"
-                      android:hint="@string/name" />
-        </android.support.design.widget.TextInputLayout>
-
-        <!-- Last Name  -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_last_name"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:inputType="textPersonName"
-                      android:hint="@string/last_name" />
-        </android.support.design.widget.TextInputLayout>
-
-        <!-- Phone number -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_phone"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:inputType="phone"
-                      android:hint="@string/phone_number" />
-        </android.support.design.widget.TextInputLayout>
-
         <!-- Password -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -134,8 +95,48 @@
                   android:layout_marginBottom="24dp"
                   android:text="@string/already_member"
                   android:gravity="center"
-                  android:textSize="16sp"/>
+                  android:textAppearance="@style/LinkFont" />
 
     </LinearLayout>
 
 </ScrollView>
+
+
+    <!-- Name -->
+    <!--<android.support.design.widget.TextInputLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:layout_marginBottom="8dp">-->
+    <!--<EditText android:id="@+id/input_name"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:inputType="textPersonName"-->
+    <!--android:hint="@string/name" />-->
+    <!--</android.support.design.widget.TextInputLayout>-->
+
+    <!--&lt;!&ndash; Last Name  &ndash;&gt;-->
+    <!--<android.support.design.widget.TextInputLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:layout_marginBottom="8dp">-->
+    <!--<EditText android:id="@+id/input_last_name"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:inputType="textPersonName"-->
+    <!--android:hint="@string/last_name" />-->
+    <!--</android.support.design.widget.TextInputLayout>-->
+
+    <!--&lt;!&ndash; Phone number &ndash;&gt;-->
+    <!--<android.support.design.widget.TextInputLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:layout_marginBottom="8dp">-->
+    <!--<EditText android:id="@+id/input_phone"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:inputType="phone"-->
+    <!--android:hint="@string/phone_number" />-->
+    <!--</android.support.design.widget.TextInputLayout>-->

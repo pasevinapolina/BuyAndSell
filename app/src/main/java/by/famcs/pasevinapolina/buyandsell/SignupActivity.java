@@ -20,15 +20,14 @@ public class SignupActivity extends AppCompatActivity {
 
     private static final String TAG = "SignupActivity";
 
-    @BindView(R.id.input_name) EditText mName;
+    //@BindView(R.id.input_name) EditText mName;
     @BindView(R.id.input_email) EditText mEmail;
-    @BindView(R.id.input_phone) EditText mPhone;
     @BindView(R.id.input_password) EditText mPassword;
     @BindView(R.id.input_confirm) EditText mConfirm;
     @BindView(R.id.btn_signup) Button mSignupButton;
     @BindView(R.id.link_login) TextView mLoginLink;
     @BindView(R.id.input_login) EditText mLogin;
-    @BindView(R.id.input_last_name) EditText mLastName;
+    //@BindView(R.id.input_last_name) EditText mLastName;
 
 
     @Override
@@ -73,10 +72,9 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage(dialogMsg);
         progressDialog.show();
 
-        String name = mName.getText().toString();
-        String lastName = mLastName.getText().toString();
+        //String name = mName.getText().toString();
+        //String lastName = mLastName.getText().toString();
         String email = mEmail.getText().toString();
-        String mobile = mPhone.getText().toString();
         String password = mPassword.getText().toString();
         String reEnterPassword = mConfirm.getText().toString();
 
@@ -110,30 +108,15 @@ public class SignupActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String name = mName.getText().toString();
-        String lastName = mLastName.getText().toString();
-        String login = mLogin.getText().toString();
+        //String name = mName.getText().toString();
+        //String lastName = mLastName.getText().toString();
 
+        String login = mLogin.getText().toString();
         String email = mEmail.getText().toString();
-        String phone = mPhone.getText().toString();
         String password = mPassword.getText().toString();
         String confirmPassword = mConfirm.getText().toString();
 
         String errorMsg = "";
-
-        if (name.isEmpty()) {
-            setError(mName, R.string.not_empty_error);
-            valid = false;
-        } else {
-            mName.setError(null);
-        }
-
-        if (lastName.isEmpty()) {
-            setError(mLastName, R.string.not_empty_error);
-            valid = false;
-        } else {
-            mLastName.setError(null);
-        }
 
         if (login.isEmpty()) {
             setError(mLogin, R.string.not_empty_error);
@@ -151,15 +134,7 @@ public class SignupActivity extends AppCompatActivity {
             mEmail.setError(null);
         }
 
-        if (phone.isEmpty()) {
-            errorMsg = getResources().getString(R.string.phone_error);
-            mPhone.setError(errorMsg);
-            valid = false;
-        } else {
-            mPhone.setError(null);
-        }
-
-        if (password.isEmpty() || password.length() < 4) {
+        if (password.isEmpty() || password.length() < 5) {
             errorMsg = getResources().getString(R.string.password_error);
             mPassword.setError(errorMsg);
             valid = false;
@@ -167,7 +142,7 @@ public class SignupActivity extends AppCompatActivity {
             mPassword.setError(null);
         }
 
-        if (confirmPassword.isEmpty() || confirmPassword.length() < 4
+        if (confirmPassword.isEmpty() || confirmPassword.length() < 5
                 || !(confirmPassword.equals(password))) {
             errorMsg = getResources().getString(R.string.password_not_match);
             mConfirm.setError(errorMsg);

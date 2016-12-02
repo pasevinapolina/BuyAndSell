@@ -79,7 +79,7 @@
             android:gravity="center_horizontal"
             android:layout_marginBottom="@dimen/activity_vertical_padding"
             android:text="@string/no_account"
-            android:textSize="16sp"/>
+            android:textAppearance="@style/LinkFont"/>
     </LinearLayout>
 
 </ScrollView>
