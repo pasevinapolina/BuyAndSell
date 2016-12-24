@@ -5,10 +5,13 @@
              android:layout_height="match_parent"
              tools:context="by.famcs.pasevinapolina.buyandsell.fragments.ProfileFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="@dimen/activity_vertical_padding"-->
+        <!--android:layout_marginStart="@dimen/activity_horizontal_margin"-->
+        <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+        <!--android:orientation="vertical">-->
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -18,23 +21,13 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_marginTop="72dp"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:src="@drawable/profile"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/aluminum"/>
-
             <TextView
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/profile_image"
-                android:layout_toEndOf="@id/profile_image"
-                android:layout_alignTop="@id/profile_image"
+                android:layout_toRightOf="@+id/profile_image"
+                android:layout_toEndOf="@+id/profile_image"
+                android:layout_alignTop="@+id/profile_image"
                 android:textAppearance="@style/SubHeaderText"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
@@ -61,21 +54,97 @@
                 android:layout_below="@+id/login"
                 android:layout_alignLeft="@+id/login"
                 android:layout_alignStart="@+id/login"
-                android:layout_marginTop="@dimen/margin_subheader_bottom"/>
+                android:layout_marginTop="@dimen/margin_subheader_bottom"
+                android:textSize="18sp"/>
+
+
+            <TextView
+                android:id="@+id/details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/details"
+                android:textAppearance="@style/SubHeaderText"
+                android:layout_below="@+id/profile_image"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                />
+
+
+            <TextView
+                android:text="@string/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/email"
+                android:layout_below="@+id/details"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textAppearance="@style/NormalText"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+            <TextView
+                android:text="jfoster1@multiply.com"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/email"
+                android:layout_alignLeft="@+id/btn_user_products"
+                android:layout_alignStart="@+id/btn_user_products"
+                android:id="@+id/email_user"
+                android:textAppearance="@style/NormalText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:text="@string/phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phone"
+                android:layout_below="@+id/email"
+                android:textAppearance="@style/NormalText"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+            <TextView
+                android:text="1-(555)-77-54-11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/phone"
+                android:layout_alignLeft="@+id/email_user"
+                android:layout_alignStart="@+id/email_user"
+                android:id="@+id/phone_user"
+                android:textAppearance="@style/NormalText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:text="@string/sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sex"
+                android:layout_below="@+id/phone"
+                android:textAppearance="@style/NormalText"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+            <TextView
+                android:text="@string/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/sex"
+                android:layout_alignLeft="@+id/email_user"
+                android:layout_alignStart="@+id/email_user"
+                android:id="@+id/sex_user"
+                android:textAppearance="@style/NormalText"
+                android:textStyle="bold" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                android:src="@drawable/profile"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/aluminum"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
 
         </RelativeLayout>
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/details"
-            android:textAppearance="@style/SubHeaderText"
-            android:layout_marginTop="@dimen/activity_vertical_padding"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
-
-    </LinearLayout>
 
 </FrameLayout>

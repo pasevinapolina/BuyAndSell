@@ -4,10 +4,44 @@
              android:layout_height="match_parent"
              tools:context="by.famcs.pasevinapolina.buyandsell.fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/home_fragment"/>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/women_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/women"
+                android:contentDescription="@string/product_photo" />
+
+            <ImageButton
+                android:id="@+id/men_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/men"
+                android:contentDescription="@string/product_photo" />
+
+            <ImageButton
+            android:id="@+id/tech_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tech"
+            android:contentDescription="@string/product_photo"  />
+
+            <ImageButton
+                android:id="@+id/prof_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/prof"
+                android:contentDescription="@string/product_photo" />
+        </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>

@@ -12,7 +12,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="name">Name</string>
-    <string name="phone_number">Phone Number</string>
+    <string name="phone_number">Phone</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="last_name">Last Name</string>
     <string name="signup">Sign up</string>
@@ -37,4 +37,10 @@
     <string name="cart">Cart</string>
     <string name="search">Search</string>
     <string name="hint_search">Product name or category</string>
+    <string name="product_photo">Product Photo</string>
+    <string name="seller">Seller: </string>
+    <string name="please_wait">Please wait...</string>
+    <string name="server_error">Error reading data from server</string>
+    <string name="sex">Sex</string>
+    <string name="male">Male</string>
 </resources>

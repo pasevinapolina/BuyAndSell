@@ -1,4 +1,4 @@
-package by.famcs.pasevinapolina.buyandsell;
+package by.famcs.pasevinapolina.buyandsell.contentproviders;
 
 import android.app.SearchManager;
 import android.content.ContentProvider;
@@ -14,9 +14,12 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import by.famcs.pasevinapolina.buyandsell.jsonparsers.GsonParser;
 import by.famcs.pasevinapolina.buyandsell.models.Product;
+import by.famcs.pasevinapolina.buyandsell.models.User;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -27,7 +30,7 @@ import okhttp3.Response;
 
 public class ProductSuggestionProvider extends ContentProvider {
 
-    List<String> mProducts;
+    List<Product> mProducts;
 
     @Override
     public boolean onCreate() {
@@ -41,21 +44,24 @@ public class ProductSuggestionProvider extends ContentProvider {
         if(mProducts == null || mProducts.isEmpty()) {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url("https://dl.dropboxusercontent.com/u/6802536/cidades.json")
+                    .url("http://buyandsellweb.herokuapp.com/json/product_data.json")
                     .build();
             try {
                 Response response = client.newCall(request).execute();
                 String jsonString = response.body().string();
-                JSONArray jsonArray = new JSONArray(jsonString);
 
-                mProducts = new ArrayList<>();
+                mProducts = Arrays.asList(GsonParser.parseJSONtoProducts(jsonString));
 
-                int length = jsonArray.length();
-                for (int i = 0; i < length; i++) {
-                    String product = jsonArray.getString(i);
-                    mProducts.add(product);
-                }
-            } catch (JSONException | IOException e) {
+//                JSONArray jsonArray = new JSONArray(jsonString);
+//
+//                mProducts = new ArrayList<>();
+//
+//                int length = jsonArray.length();
+//                for (int i = 0; i < length; i++) {
+//                    String product = jsonArray.getString(i);
+//                    mProducts.add(product);
+//                }
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -72,9 +78,9 @@ public class ProductSuggestionProvider extends ContentProvider {
             int limit = Integer.parseInt(uri.getQueryParameter(
                     SearchManager.SUGGEST_PARAMETER_LIMIT));
 
-            int lenght = mProducts.size();
-            for (int i = 0; i < lenght && matrixCursor.getCount() < limit; i++) {
-                String product = mProducts.get(i);
+            int length = mProducts.size();
+            for (int i = 0; i < length && matrixCursor.getCount() < limit; i++) {
+                String product = mProducts.get(i).getName();
                 if (product.toUpperCase().contains(query)) {
                     matrixCursor.addRow(new Object[]{ i, product, i });
                 }

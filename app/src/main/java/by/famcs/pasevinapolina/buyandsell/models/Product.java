@@ -1,13 +1,16 @@
 package by.famcs.pasevinapolina.buyandsell.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
- * Created by user on 27.11.2016.
+ * Created by user
  */
 
 public class Product {
 
+    @SerializedName("product_id")
     private long id;
 
     private User owner;
@@ -15,12 +18,13 @@ public class Product {
     private String category;
 
     private double price;
+    @SerializedName("on_sale_price")
     private double onSalePrice;
 
     private String description;
     private String brand;
 
-    //private byte[] photo;
+    private String photo;
     private List<String> colors;
     private List<Integer> sizes;
 
@@ -126,5 +130,13 @@ public class Product {
 
     public void setSizes(List<Integer> sizes) {
         this.sizes = sizes;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

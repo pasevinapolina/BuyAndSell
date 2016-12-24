@@ -1,5 +1,7 @@
 package by.famcs.pasevinapolina.buyandsell.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+    @SerializedName("user_id")
     private long id;
     private String login;
     private String password;
@@ -16,6 +19,7 @@ public class User implements Serializable {
     private int role;
 
     private String name;
+    @SerializedName("last_name")
     private String lastName;
 
     private String phone;
@@ -25,6 +29,12 @@ public class User implements Serializable {
 
 
     public User() {
+    }
+
+    public User(String login, String name, String lastName) {
+        this.login = login;
+        this.name = name;
+        this.lastName = lastName;
     }
 
     public User(long id, String login, String password, String email, int role,

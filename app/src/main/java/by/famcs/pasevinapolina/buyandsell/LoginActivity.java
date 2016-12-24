@@ -2,6 +2,8 @@ package by.famcs.pasevinapolina.buyandsell;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,12 +16,15 @@ import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import by.famcs.pasevinapolina.buyandsell.adapters.HttpHandler;
+import by.famcs.pasevinapolina.buyandsell.jsonparsers.GsonParser;
 import by.famcs.pasevinapolina.buyandsell.models.User;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    ProgressDialog progressDialog;
 
     @BindView(R.id.btn_login)
     Button mLoginButton;
@@ -40,6 +45,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        mLoginButton = (Button)findViewById(R.id.btn_login);
+        mSignupLink = (TextView)findViewById(R.id.link_signup);
+        mEmail = (EditText) findViewById(R.id.input_email);
+        mPassword = (EditText) findViewById(R.id.input_password);
 
         mLoginButton.setOnClickListener((v)-> {login();});
 
@@ -62,23 +72,18 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginButton.setEnabled(false);
 
-        String authMessage = getResources().getString(R.string.auth);
-
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage(authMessage);
-        progressDialog.show();
-
         String email = mEmail.getText().toString();
         String password = mPassword.getText().toString();
 
-        //TODO
+        new AsyncLogin().execute(email,password);
 
         new android.os.Handler().postDelayed(
                 ()-> {
-                    onLoginSuccess();
-                    progressDialog.dismiss();
+                    if(user != null) {
+                        onLoginSuccess();
+                    } else {
+                        onLoginFailed();
+                    }
                 }, 3000);
     }
 
@@ -101,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onLoginSuccess() {
         mLoginButton.setEnabled(true);
-        user = new User();
+        //user = new User();
         user.setLogin(mEmail.getText().toString());
         user.setPassword(mPassword.getText().toString());
         getIntent().putExtra(MainActivity.USER, user);
@@ -138,5 +143,73 @@ public class LoginActivity extends AppCompatActivity {
             mPassword.setError(null);
         }
         return isValid;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(MainActivity.USER, user);
+    }
+
+    private class AsyncLogin extends AsyncTask<String, Boolean, Boolean>
+    {
+        //ProgressDialog pdLoading = new ProgressDialog(LoginActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = new ProgressDialog(LoginActivity.this,
+                    R.style.AppTheme_Dark_Dialog);
+
+            String authMessage = getResources().getString(R.string.auth);
+
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage(authMessage);
+            progressDialog.show();
+
+        }
+        @Override
+        protected Boolean doInBackground(String... params) {
+            String url = "http://buyandsellweb.herokuapp.com/json/user_data.json";
+            HttpHandler httpHandler = new HttpHandler();
+            String response = httpHandler.makePOSTCall(url, params[0], params[1]);
+            User[] users = GsonParser.parseJSONtoUser(response);
+
+            boolean isAuth = false;
+            for (User user1 : users) {
+                if (user1.getEmail().equals(params[0]) &&
+                        user1.getPassword().equals(params[1])) {
+                    user = user1;
+                    isAuth = true;
+                }
+            }
+
+            return Boolean.valueOf(isAuth);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean isAuth) {
+
+            //pdLoading.dismiss();
+            if(progressDialog.isShowing()) {
+                       progressDialog.dismiss();
+                    }
+
+            if(isAuth){
+                /* Here launching another activity when login successful. If you persist login state
+                use sharedPreferences of Android. and logout button to clear sharedPreferences.
+                 */
+
+                onLoginSuccess();
+
+            }else {
+
+                //onLoginSuccess();
+                onLoginFailed();
+
+            }
+        }
+
     }
 }

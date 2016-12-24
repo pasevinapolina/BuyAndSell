@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             user = (User) intent.getSerializableExtra(USER);
+            if(user == null) {
+                user = new User();
+            }
         }
 
         final ActionBar actionBar = getSupportActionBar();
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity
         switch(item.getItemId()) {
             case R.id.action_cart:
                 Intent intent = new Intent(this, CartActivity.class);
-                //intent.putExtra(USER, user);
+                intent.putExtra(USER, user);
                 startActivity(intent);
                 return true;
             case R.id.action_search:

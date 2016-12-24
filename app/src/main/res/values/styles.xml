@@ -23,6 +23,16 @@
         <item name="android:buttonStyle">@style/ActionThemeButton</item>
     </style>
 
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabMaxWidth">@dimen/tab_max_width</item>
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+
     <style name="LinkFont" parent="@android:style/TextAppearance.Medium">
         <item name="android:textColor">@color/yellow_orange</item>
         <item name="android:textSize">16sp</item>
@@ -35,8 +45,16 @@
 
     <style name="SubHeaderText" parent="@android:style/TextAppearance.DeviceDefault.Large">
         <item name="android:textColor">@color/monsoon</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">@dimen/margin_subheader_bottom</item>
+    </style>
+
+    <style name="PriceText" parent="@android:style/TextAppearance.DeviceDefault.Large">
+        <item name="android:textColor">@color/primary_dark</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginRight">13dp</item>
         <item name="android:layout_marginBottom">@dimen/margin_subheader_bottom</item>
     </style>
 
@@ -44,5 +62,11 @@
 
     </style>
 
+    <style name="SmallText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/oil</item>
+    </style>
+
     <dimen name="margin_subheader_bottom">16dp</dimen>
+    <dimen name="tab_max_width">0dp</dimen>
 </resources>
